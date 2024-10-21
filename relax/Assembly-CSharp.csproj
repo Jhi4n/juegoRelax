@@ -65,13 +65,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ButterflySpawn.cs" />
+    <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\MisScripts\DogNPC_Random.cs" />
+    <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\MisScripts\CharacterSwitchManager.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\VegetationBendControl.cs" />
-    <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\CharacterSwitchManager.cs" />
+    <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\MisScripts\BlockAndDoorController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ExitGame.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ButterflySpawnArea.cs" />
     <Compile Include="Assets\Bublisher\3D Stylized Animated Dogs Kit\Scripts\AnimationButton.cs" />
-    <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\DogNPC_Random.cs" />
+    <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\chihuahua\PlayerTriggerInteraction.cs" />
+    <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\pastoraleman\Desvincular.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\BushLeafTrigger.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\WindControl.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\PlayerMovement.cs" />

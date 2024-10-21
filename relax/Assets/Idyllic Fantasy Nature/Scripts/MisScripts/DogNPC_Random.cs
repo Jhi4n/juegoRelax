@@ -10,6 +10,8 @@ public class DogNPC_Random : MonoBehaviour
 
     private bool isWaiting = false;     // Indica si el perro está esperando antes de moverse de nuevo
     private bool canDetectInput = false;
+
+    public PlayerMovement playerMovement;
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();

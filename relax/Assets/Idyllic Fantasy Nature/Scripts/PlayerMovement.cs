@@ -26,6 +26,7 @@ using UnityEngine.Rendering;
 
         private bool canDetectInput = false;  // Variable to control input detection
 
+        public bool sentado;
 
         // Start is called before the first frame update
         void Start()
@@ -48,6 +49,28 @@ using UnityEngine.Rendering;
         void Update()
         {
             if (!canDetectInput) return;
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (sentado)
+                {
+                    // Levantarse
+                    sentado = false;
+                    _animator.SetTrigger("levantarseTrigger");  // Activar el trigger para levantarse
+                }
+                else
+                {
+                    // Sentarse
+                    sentado = true;
+                    _animator.SetTrigger("sentadoTrigger");  // Activar el trigger para sentarse
+                }
+                return;  // Salir del Update para no procesar movimiento si se está cambiando de estado
+            }
+            // Si el jugador está sentado, no hacer nada (bloquear movimiento)
+            if (sentado)
+            {
+                return;  // Salir del Update para evitar cualquier movimiento
+            }
 
             // stops the y velocity when player is on the ground and the velocity has reached 0
             if (characterController.isGrounded && _controllerVelocity.y < 0)

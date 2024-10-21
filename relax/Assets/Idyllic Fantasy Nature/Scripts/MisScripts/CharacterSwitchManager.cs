@@ -9,6 +9,8 @@ public class CharacterSwitchManager : MonoBehaviour
     [SerializeField] private Canvas characterSelectionCanvas;
     public int currentCharacterIndex = 0; // Índice del personaje actualmente activo
 
+    public PlayerTriggerInteraction chihuahua;
+
     private void Start()
     {
         // Desactiva todos los personajes excepto el primero al inicio
@@ -43,38 +45,54 @@ public class CharacterSwitchManager : MonoBehaviour
         characterSelectionCanvas.gameObject.SetActive(!characterSelectionCanvas.gameObject.activeSelf);
     }
 
-
-    private void ShowCharacterSelectionGUI()
-    {
-        // Ejemplo de código para mostrar GUI de selección de personaje (esto puede variar según la UI que uses)
-        for (int i = 0; i < characters.Length; i++)
-        {
-            if (GUILayout.Button("Personaje " + (i + 1)))
-            {
-                SwitchCharacter(i);
-            }
-        }
-    }
-
     public void SwitchCharacter(int newCharacterIndex)
     {
         if (newCharacterIndex != currentCharacterIndex)
         {
             // Desactiva el movimiento del personaje actual
             characters[currentCharacterIndex].GetComponent<PlayerMovement>().enabled = false;
-            characters[currentCharacterIndex].GetComponent<DogNPC_Random>().enabled = true;
-            characters[currentCharacterIndex].GetComponent<NavMeshAgent>().enabled = true;
-
-            // Cambia al nuevo personaje
-            //characters[currentCharacterIndex].SetActive(false);
+            
+            if(chihuahua.cargado && currentCharacterIndex == 1){
+                characters[1].GetComponent<DogNPC_Random>().enabled = false;
+                characters[1].GetComponent<NavMeshAgent>().enabled = false;
+            } 
+            else{
+                characters[currentCharacterIndex].GetComponent<DogNPC_Random>().enabled = true;
+                characters[currentCharacterIndex].GetComponent<NavMeshAgent>().enabled = true;
+            }
+            if(characters[currentCharacterIndex].GetComponent<PlayerMovement>().sentado){
+                characters[currentCharacterIndex].GetComponent<DogNPC_Random>().enabled = false;
+                characters[currentCharacterIndex].GetComponent<NavMeshAgent>().enabled = false;
+            }
+            else{
+                characters[currentCharacterIndex].GetComponent<DogNPC_Random>().enabled = true;
+                characters[currentCharacterIndex].GetComponent<NavMeshAgent>().enabled = true;
+            }
             currentCharacterIndex = newCharacterIndex;
-            characters[currentCharacterIndex].SetActive(true);
-
+            
+            if(characters[currentCharacterIndex].GetComponent<PlayerMovement>().sentado){
+                characters[currentCharacterIndex].GetComponent<DogNPC_Random>().enabled = false;
+                characters[currentCharacterIndex].GetComponent<NavMeshAgent>().enabled = false;
+            }
+            else{
+                characters[currentCharacterIndex].GetComponent<DogNPC_Random>().enabled = true;
+                characters[currentCharacterIndex].GetComponent<NavMeshAgent>().enabled = true;
+            }
+            if(chihuahua.cargado && currentCharacterIndex == 1){
+                UpdateCameraPriorities();
+                return;
+            }
+            else
             // Activa el movimiento del nuevo personaje
             characters[currentCharacterIndex].GetComponent<DogNPC_Random>().enabled = false;
             characters[currentCharacterIndex].GetComponent<NavMeshAgent>().enabled = false;
             characters[currentCharacterIndex].GetComponent<PlayerMovement>().enabled = true;
 
+        
+
+            // Cambia al nuevo personaje
+            //characters[currentCharacterIndex].SetActive(false);
+            //characters[currentCharacterIndex].SetActive(true);
             // Actualiza las prioridades de las cámaras
             UpdateCameraPriorities();
         }
